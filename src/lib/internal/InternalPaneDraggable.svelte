@@ -590,7 +590,7 @@ This component is for internal use only.
 
 <style>
 	div.draggable-container {
-		position: fixed;
+		position: absolute;
 		z-index: auto;
 		padding: 20px;
 		/* 0.2s matches Tweakpane's internal animation duration */
