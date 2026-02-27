@@ -4,6 +4,7 @@
 		NumberInputParams as GenericSliderOptions,
 		SliderInputBindingApi as GenericSliderRef,
 	} from 'tweakpane'
+	import { onDestroy } from 'svelte'
 	import type { IntervalSliderValue } from '$lib/control/IntervalSlider.svelte'
 	import GenericInput from '$lib/internal/GenericInput.svelte'
 
@@ -65,6 +66,40 @@
 	export let keyScale: $$Props['keyScale'] = undefined
 	export let format: $$Props['format'] = undefined
 	export let ref: $$Props['ref'] = undefined
+
+	let cleanupSanitize: (() => void) | undefined
+
+	$: {
+		// Always remove listeners when either ref goes away or format is unset
+		cleanupSanitize?.()
+		cleanupSanitize = undefined
+
+		// Only install when both exist
+		if (ref && format) {
+			const input = ref.element.querySelector('input')
+			if (input) {
+				const sanitize = () => {
+					const next = input.value.replaceAll(/[,_\s]/g, '')
+					if (next !== input.value) {
+						input.value = next
+						input.dispatchEvent(new Event('input', { bubbles: true }))
+					}
+				}
+
+				const onKeyDown = (event: KeyboardEvent) => {
+					if (event.key === 'Enter') sanitize()
+				}
+
+				input.addEventListener('keydown', onKeyDown, true)
+
+				cleanupSanitize = () => {
+					input.removeEventListener('keydown', onKeyDown, true)
+				}
+			}
+		}
+	}
+
+	onDestroy(() => cleanupSanitize?.())
 
 	// Wide is "patched in" to address issue #8. Wheel and Ring, which extend
 	// GenericSlider, already have an implementation for a wide prop, so they
