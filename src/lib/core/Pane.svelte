@@ -29,6 +29,7 @@
 		 *   vary depending on the defined `position` value.
 		 * @default `'draggable'`
 		 */
+		inertia?: ComponentProps<InternalPaneDraggable>['inertia']
 		position?: PanePosition
 	} & (
 		| (ComponentProps<InternalPaneFixed> & {
@@ -57,8 +58,7 @@
 	export let width: $$Props['width'] = undefined
 	export let tpPane: $$Props['tpPane'] = undefined
 
-	export let inertia: ComponentProps<InternalPaneDraggable>['inertia'] = false
-
+	export let inertia: $$Props['inertia'] = false
 	// Redeclare types instead of referencing $$Props['key'] since certain keys aren't guaranteed
 	export let x: number | undefined = undefined
 	export let y: number | undefined = undefined
