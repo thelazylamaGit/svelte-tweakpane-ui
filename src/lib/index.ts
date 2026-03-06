@@ -152,3 +152,6 @@ export { default as ThemeUtils } from '$lib/theme.js'
 export type { BindingObject, Plugin, ValueChangeEvent } from '$lib/utils.js'
 
 export { default as Utils } from '$lib/utils.js'
+export { hideTooltip, showTooltip, tooltipStore } from './tooltipStore'
+
+export type { TooltipState } from './tooltipStore'

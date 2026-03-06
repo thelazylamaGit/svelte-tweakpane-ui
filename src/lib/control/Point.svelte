@@ -1,6 +1,8 @@
 <script context="module" lang="ts">
 	import type { Point2dInputParams, Point3dInputParams, Point4dInputParams } from 'tweakpane'
+	import { onDestroy } from 'svelte'
 	import type { Simplify, ValueChangeEvent } from '$lib/utils.js'
+	import { hideTooltip, showTooltip } from '$lib/tooltipStore'
 
 	// Extends Tweakpane's implementation to support tuples
 	export type PointValue2dObject = { x: number; y: number }
@@ -165,6 +167,65 @@
 	// Bindable props must be re-exported
 	export let value: T
 	export let expanded: boolean | undefined = $$props.expanded ?? undefined //  $$Props['expanded']; not working here?
+
+	export let axisDescription: Partial<Record<'w' | 'x' | 'y' | 'z', string>> | undefined = undefined
+
+	let ref: any
+	let axisTooltipAbortController: AbortController | undefined
+
+	function attachAxisTooltips() {
+		axisTooltipAbortController?.abort()
+		axisTooltipAbortController = undefined
+
+		if (!BROWSER || !axisDescription || !ref?.element) return
+
+		const row = ref.element as HTMLElement
+		const inputs = [...row.querySelectorAll<HTMLInputElement>('.tp-txtv_i')]
+		if (inputs.length === 0) return
+
+		const axes: Array<'w' | 'x' | 'y' | 'z'> =
+			'w' in internalValue
+				? ['x', 'y', 'z', 'w']
+				: 'z' in internalValue
+					? ['x', 'y', 'z']
+					: ['x', 'y']
+
+		axisTooltipAbortController = new AbortController()
+		const { signal } = axisTooltipAbortController
+
+		for (const [i, axis] of axes.entries()) {
+			const text = axisDescription[axis]
+			const input = inputs[i]
+			if (!text || !input) continue
+
+			const field = input.closest<HTMLElement>('.tp-txtv') ?? input
+			const knob = field.querySelector<HTMLElement>('.tp-txtv_k') ?? null
+
+			// Input hover -> anchor = field
+			// eslint-disable-next-line unicorn/consistent-function-scoping
+			const enterInput = () => showTooltip(field, row, text)
+
+			input.addEventListener('pointerenter', enterInput, { signal })
+			input.addEventListener('pointerleave', hideTooltip, { signal })
+			input.addEventListener('pointerdown', hideTooltip, { capture: true, signal })
+			input.addEventListener('focusin', hideTooltip, { capture: true, signal })
+
+			// Knob hover -> anchor = knob (or field if missing)
+			if (knob) {
+				const enterKnob = () => showTooltip(knob, row, text)
+				knob.addEventListener('pointerenter', enterKnob, { signal })
+				knob.addEventListener('pointerleave', hideTooltip, { signal })
+				knob.addEventListener('pointerdown', hideTooltip, { capture: true, signal })
+				knob.addEventListener('focusin', hideTooltip, { capture: true, signal })
+			}
+		}
+	}
+
+	$: (ref, axisDescription, internalValue, attachAxisTooltips())
+
+	onDestroy(() => {
+		axisTooltipAbortController?.abort()
+	})
 
 	// No need to re-export non-bindable props
 	let pointerScale: $$Props['pointerScale'] = $$props['pointerScale'] ?? undefined
@@ -335,6 +396,7 @@ position="inline">` component.
 
 <GenericInputFolding
 	bind:value={internalValue}
+	bind:ref
 	bind:expanded
 	on:change
 	{buttonClass}
