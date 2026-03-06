@@ -10,28 +10,7 @@
 	import InternalPaneInline from '$lib/internal/InternalPaneInline.svelte'
 	import { removeKeys } from '$lib/utils.js'
 
-	type $$Props = {
-		/**
-		 * Pane mode, one of three options:
-		 * - **'draggable'** *(default)*  \
-		 *   The pane is draggable and resizable, and may be placed anywhere over the page.
-		 * - **'draggable-absolute'** \
-		 *   Draggable + resizable overlay, but position is stored in document coordinates
-		 *   so the pane moves with the page during scroll.
-		 * - **'inline'**  \
-		 *   The pane appears inline with other content in the normal flow of the document.  \
-		 *   This is the default mode for components created outside of an explicit `<Pane>`
-		 *   component.*
-		 * - **'fixed'** \
-		 *   Standard Tweakpane behavior where the pane is shown in a fixed position over the page.
-		 *
-		 *   Note that `<Pane>` is a dynamic component, and availability of additional props will
-		 *   vary depending on the defined `position` value.
-		 * @default `'draggable'`
-		 */
-		inertia?: ComponentProps<InternalPaneDraggable>['inertia']
-		position?: PanePosition
-	} & (
+	type $$Props = (
 		| (ComponentProps<InternalPaneFixed> & {
 				position: 'fixed'
 		  })
@@ -42,7 +21,30 @@
 		| (ComponentProps<InternalPaneDraggable> & {
 				position?: 'draggable' | 'draggable-absolute' | undefined
 		  })
-	)
+	) &
+		// eslint-disable-next-line perfectionist/sort-intersection-types
+		{
+			/**
+			 * Pane mode, one of three options:
+			 * - **'draggable'** *(default)*  \
+			 *   The pane is draggable and resizable, and may be placed anywhere over the page.
+			 * - **'draggable-absolute'** \
+			 *   Draggable + resizable overlay, but position is stored in document coordinates
+			 *   so the pane moves with the page during scroll.
+			 * - **'inline'**  \
+			 *   The pane appears inline with other content in the normal flow of the document.  \
+			 *   This is the default mode for components created outside of an explicit `<Pane>`
+			 *   component.*
+			 * - **'fixed'** \
+			 *   Standard Tweakpane behavior where the pane is shown in a fixed position over the page.
+			 *
+			 *   Note that `<Pane>` is a dynamic component, and availability of additional props will
+			 *   vary depending on the defined `position` value.
+			 * @default `'draggable'`
+			 */
+			inertia?: ComponentProps<InternalPaneDraggable>['inertia']
+			position?: PanePosition
+		}
 
 	type $$Slots = {
 		/**

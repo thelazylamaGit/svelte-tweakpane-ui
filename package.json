@@ -1,272 +1,279 @@
 {
-  "name": "svelte-tweakpane-ui",
-  "version": "1.5.14",
-  "description": "A Svelte component library wrapping UI elements from Tweakpane, plus some additional functionality for convenience and flexibility.",
-  "keywords": [
-    "components",
-    "ui",
-    "tweaks",
-    "parameters",
-    "gui",
-    "svelte",
-    "sveltekit",
-    "tweakpane",
-    "ui-library",
-    "svelte-ui",
-    "svelte-components",
-    "ui-components",
-    "components-library",
-    "front-end",
-    "npm-package"
-  ],
-  "homepage": "https://kitschpatrol.com/svelte-tweakpane-ui",
-  "bugs": "https://github.com/kitschpatrol/svelte-tweakpane-ui/issues",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kitschpatrol/svelte-tweakpane-ui.git"
-  },
-  "license": "MIT",
-  "author": {
-    "name": "Eric Mika",
-    "email": "eric@ericmika.com",
-    "url": "https://ericmika.com"
-  },
-  "type": "module",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "svelte": "./dist/index.js"
-    },
-    "./Button.svelte": {
-      "types": "./dist/control/Button.svelte.d.ts",
-      "svelte": "./dist/control/Button.svelte"
-    },
-    "./ButtonGrid.svelte": {
-      "types": "./dist/control/ButtonGrid.svelte.d.ts",
-      "svelte": "./dist/control/ButtonGrid.svelte"
-    },
-    "./Checkbox.svelte": {
-      "types": "./dist/control/Checkbox.svelte.d.ts",
-      "svelte": "./dist/control/Checkbox.svelte"
-    },
-    "./Color.svelte": {
-      "types": "./dist/control/Color.svelte.d.ts",
-      "svelte": "./dist/control/Color.svelte"
-    },
-    "./CubicBezier.svelte": {
-      "types": "./dist/control/CubicBezier.svelte.d.ts",
-      "svelte": "./dist/control/CubicBezier.svelte"
-    },
-    "./File.svelte": {
-      "types": "./dist/control/File.svelte.d.ts",
-      "svelte": "./dist/control/File.svelte"
-    },
-    "./Image.svelte": {
-      "types": "./dist/control/Image.svelte.d.ts",
-      "svelte": "./dist/control/Image.svelte"
-    },
-    "./IntervalSlider.svelte": {
-      "types": "./dist/control/IntervalSlider.svelte.d.ts",
-      "svelte": "./dist/control/IntervalSlider.svelte"
-    },
-    "./List.svelte": {
-      "types": "./dist/control/List.svelte.d.ts",
-      "svelte": "./dist/control/List.svelte"
-    },
-    "./Point.svelte": {
-      "types": "./dist/control/Point.svelte.d.ts",
-      "svelte": "./dist/control/Point.svelte"
-    },
-    "./RadioGrid.svelte": {
-      "types": "./dist/control/RadioGrid.svelte.d.ts",
-      "svelte": "./dist/control/RadioGrid.svelte"
-    },
-    "./Ring.svelte": {
-      "types": "./dist/control/Ring.svelte.d.ts",
-      "svelte": "./dist/control/Ring.svelte"
-    },
-    "./RotationEuler.svelte": {
-      "types": "./dist/control/RotationEuler.svelte.d.ts",
-      "svelte": "./dist/control/RotationEuler.svelte"
-    },
-    "./RotationQuaternion.svelte": {
-      "types": "./dist/control/RotationQuaternion.svelte.d.ts",
-      "svelte": "./dist/control/RotationQuaternion.svelte"
-    },
-    "./Slider.svelte": {
-      "types": "./dist/control/Slider.svelte.d.ts",
-      "svelte": "./dist/control/Slider.svelte"
-    },
-    "./Stepper.svelte": {
-      "types": "./dist/control/Stepper.svelte.d.ts",
-      "svelte": "./dist/control/Stepper.svelte"
-    },
-    "./Text.svelte": {
-      "types": "./dist/control/Text.svelte.d.ts",
-      "svelte": "./dist/control/Text.svelte"
-    },
-    "./Textarea.svelte": {
-      "types": "./dist/control/Textarea.svelte.d.ts",
-      "svelte": "./dist/control/Textarea.svelte"
-    },
-    "./Wheel.svelte": {
-      "types": "./dist/control/Wheel.svelte.d.ts",
-      "svelte": "./dist/control/Wheel.svelte"
-    },
-    "./Binding.svelte": {
-      "types": "./dist/core/Binding.svelte.d.ts",
-      "svelte": "./dist/core/Binding.svelte"
-    },
-    "./Blade.svelte": {
-      "types": "./dist/core/Blade.svelte.d.ts",
-      "svelte": "./dist/core/Blade.svelte"
-    },
-    "./Folder.svelte": {
-      "types": "./dist/core/Folder.svelte.d.ts",
-      "svelte": "./dist/core/Folder.svelte"
-    },
-    "./Pane.svelte": {
-      "types": "./dist/core/Pane.svelte.d.ts",
-      "svelte": "./dist/core/Pane.svelte"
-    },
-    "./Separator.svelte": {
-      "types": "./dist/core/Separator.svelte.d.ts",
-      "svelte": "./dist/core/Separator.svelte"
-    },
-    "./TabGroup.svelte": {
-      "types": "./dist/core/TabGroup.svelte.d.ts",
-      "svelte": "./dist/core/TabGroup.svelte"
-    },
-    "./TabPage.svelte": {
-      "types": "./dist/core/TabPage.svelte.d.ts",
-      "svelte": "./dist/core/TabPage.svelte"
-    },
-    "./AutoObject.svelte": {
-      "types": "./dist/extra/AutoObject.svelte.d.ts",
-      "svelte": "./dist/extra/AutoObject.svelte"
-    },
-    "./AutoValue.svelte": {
-      "types": "./dist/extra/AutoValue.svelte.d.ts",
-      "svelte": "./dist/extra/AutoValue.svelte"
-    },
-    "./Element.svelte": {
-      "types": "./dist/extra/Element.svelte.d.ts",
-      "svelte": "./dist/extra/Element.svelte"
-    },
-    "./FpsGraph.svelte": {
-      "types": "./dist/monitor/FpsGraph.svelte.d.ts",
-      "svelte": "./dist/monitor/FpsGraph.svelte"
-    },
-    "./Monitor.svelte": {
-      "types": "./dist/monitor/Monitor.svelte.d.ts",
-      "svelte": "./dist/monitor/Monitor.svelte"
-    },
-    "./Profiler.svelte": {
-      "types": "./dist/monitor/Profiler.svelte.d.ts",
-      "svelte": "./dist/monitor/Profiler.svelte"
-    },
-    "./WaveformMonitor.svelte": {
-      "types": "./dist/monitor/WaveformMonitor.svelte.d.ts",
-      "svelte": "./dist/monitor/WaveformMonitor.svelte"
-    },
-    "./ThemeUtils.js": {
-      "types": "./dist/theme.d.ts",
-      "default": "./dist/theme.js"
-    },
-    "./Utils.js": {
-      "types": "./dist/utils.d.ts",
-      "default": "./dist/utils.js"
-    }
-  },
-  "types": "./dist/index.d.ts",
-  "files": [
-    "./dist"
-  ],
-  "scripts": {
-    "build": "pnpm run --sequential /^build:/",
-    "build:01-sync": "pnpm run check && pnpm run docs-sync",
-    "build:02-exports": "tsx ./scripts/generate-exports.ts",
-    "build:03-add-source-links": "tsx ./scripts/add-source-links.ts",
-    "build:04-format": "pnpm run format",
-    "build:05-package": "svelte-package && publint",
-    "build:06-heal-dts-comments": "tsx ./scripts/heal-dts-comments.ts",
-    "build:07-strip-component-documentation": "tsx ./scripts/strip-component-documentation.ts",
-    "build:08-format-library": "prettier --ignore-path --plugin prettier-plugin-svelte --write ./dist",
-    "build:09-doc-data": "tsx ./scripts/generate-documentation-data.ts",
-    "build:10-examples-to-kit": "tsx ./scripts/generate-kit-examples.ts",
-    "build:11-examples-to-docs": "tsx ./scripts/generate-example-components.ts",
-    "build:12-acknowledgments-data": "mkdir -p ./docs/src/content/acknowledgments && pnpm licenses list --json > ./docs/src/content/acknowledgments/acknowledgments-lib.json",
-    "build:13-build-docs": "pnpm run docs-build",
-    "build:14-build-kit": "pnpm run kit-build",
-    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.build.json",
-    "check-watch": "svelte-kit sync && svelte-check --ignore ./scratch --tsconfig ./tsconfig.build.json --watch",
-    "clean": "rm pnpm-lock.yaml ; git clean -fdX",
-    "docs-build": "pnpm -C ./docs run build",
-    "docs-dev": "pnpm -C ./docs run dev",
-    "docs-preview": "pnpm -C ./docs run preview",
-    "docs-sync": "pnpm -C ./docs run sync",
-    "fix": "ksc fix",
-    "format": "ksc-mdat fix ; ksc-eslint fix ; ksc-prettier fix ; tsx ./scripts/format-embedded-code.ts",
-    "kit-build": "pnpm run kit-examples && vite build",
-    "kit-dev": " pnpm run kit-examples && vite dev",
-    "kit-examples": "tsx ./scripts/generate-kit-examples.ts",
-    "kit-preview": "vite preview",
-    "lint": "ksc lint && svelte-check --tsconfig ./tsconfig.build.json",
-    "release": "pnpm run build && bumpp --commit 'Release: %s' && NPM_AUTH_TOKEN=$(op read 'op://Personal/npm/token') && pnpm publish --ignore-scripts",
-    "rewrap": "rewrap -i --column 100 `find src \\( -name '*.svelte' -o -name '*.ts'  -o -name '*.html' \\) -type f | grep -v src/examples`",
-    "test": "pnpm run --sequential /^test:/",
-    "test:integration": "playwright test",
-    "type-check": "tsc --noEmit"
-  },
-  "dependencies": {
-    "@kitschpatrol/tweakpane-plugin-camerakit": "0.3.1-beta.3",
-    "@kitschpatrol/tweakpane-plugin-essentials": "0.2.2-beta.3",
-    "@kitschpatrol/tweakpane-plugin-file-import": "1.1.2-beta.2",
-    "@kitschpatrol/tweakpane-plugin-image": "2.0.1-beta.8",
-    "@kitschpatrol/tweakpane-plugin-inputs": "1.0.4-beta.5",
-    "@kitschpatrol/tweakpane-plugin-profiler": "0.4.2-beta.3",
-    "@kitschpatrol/tweakpane-plugin-rotation": "0.2.1-beta.2",
-    "@kitschpatrol/tweakpane-plugin-textarea": "2.0.1-beta.2",
-    "@kitschpatrol/tweakpane-plugin-waveform": "1.0.4-beta.3",
-    "@tweakpane/core": "2.0.5",
-    "esm-env": "^1.2.2",
-    "fast-copy": "^4.0.2",
-    "fast-equals": "^6.0.0",
-    "nanoid": "^5.1.6",
-    "svelte-persisted-store": "0.12.0",
-    "tweakpane": "4.0.5"
-  },
-  "devDependencies": {
-    "@kitschpatrol/shared-config": "^5.13.0",
-    "@phenomnomnominal/tsquery": "^6.1.4",
-    "@playwright/test": "^1.58.1",
-    "@stkb/rewrap": "^0.1.0",
-    "@sveltejs/adapter-static": "^3.0.10",
-    "@sveltejs/kit": "^2.50.2",
-    "@sveltejs/package": "^2.5.7",
-    "@sveltejs/vite-plugin-svelte": "^3.1.2",
-    "@types/eslint": "^8.56.12",
-    "@types/node": "^20.19.31",
-    "bumpp": "^10.4.0",
-    "glob": "^13.0.1",
-    "node-addon-api": "^8.5.0",
-    "node-gyp": "^12.2.0",
-    "postcss-html": "^1.8.1",
-    "publint": "^0.3.17",
-    "read-package-up": "^12.0.0",
-    "svelte": "^4.2.20",
-    "svelte-check": "^4.3.6",
-    "svelte-language-server": "^0.17.25",
-    "svelte2tsx": "^0.7.47",
-    "ts-morph": "^27.0.2",
-    "tslib": "^2.8.1",
-    "tsx": "^4.21.0",
-    "typescript": "~5.9.3",
-    "vite": "^5.4.21",
-    "yaml": "^2.8.2"
-  },
-  "peerDependencies": {
-    "svelte": "^4.0.0 || ^5.0.0"
-  },
-  "packageManager": "pnpm@10.28.2"
+	"name": "svelte-tweakpane-ui",
+	"version": "1.5.15",
+	"description": "A Svelte component library wrapping UI elements from Tweakpane, plus some additional functionality for convenience and flexibility.",
+	"keywords": [
+		"components",
+		"ui",
+		"tweaks",
+		"parameters",
+		"gui",
+		"svelte",
+		"sveltekit",
+		"tweakpane",
+		"ui-library",
+		"svelte-ui",
+		"svelte-components",
+		"ui-components",
+		"components-library",
+		"front-end",
+		"npm-package"
+	],
+	"homepage": "https://kitschpatrol.com/svelte-tweakpane-ui",
+	"bugs": "https://github.com/kitschpatrol/svelte-tweakpane-ui/issues",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/kitschpatrol/svelte-tweakpane-ui.git"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Eric Mika",
+		"email": "eric@ericmika.com",
+		"url": "https://ericmika.com"
+	},
+	"sideEffects": false,
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"svelte": "./dist/index.js"
+		},
+		"./AutoObject.svelte": {
+			"types": "./dist/extra/AutoObject.svelte.d.ts",
+			"svelte": "./dist/extra/AutoObject.svelte"
+		},
+		"./AutoValue.svelte": {
+			"types": "./dist/extra/AutoValue.svelte.d.ts",
+			"svelte": "./dist/extra/AutoValue.svelte"
+		},
+		"./Binding.svelte": {
+			"types": "./dist/core/Binding.svelte.d.ts",
+			"svelte": "./dist/core/Binding.svelte"
+		},
+		"./Blade.svelte": {
+			"types": "./dist/core/Blade.svelte.d.ts",
+			"svelte": "./dist/core/Blade.svelte"
+		},
+		"./Button.svelte": {
+			"types": "./dist/control/Button.svelte.d.ts",
+			"svelte": "./dist/control/Button.svelte"
+		},
+		"./ButtonGrid.svelte": {
+			"types": "./dist/control/ButtonGrid.svelte.d.ts",
+			"svelte": "./dist/control/ButtonGrid.svelte"
+		},
+		"./Checkbox.svelte": {
+			"types": "./dist/control/Checkbox.svelte.d.ts",
+			"svelte": "./dist/control/Checkbox.svelte"
+		},
+		"./Color.svelte": {
+			"types": "./dist/control/Color.svelte.d.ts",
+			"svelte": "./dist/control/Color.svelte"
+		},
+		"./CubicBezier.svelte": {
+			"types": "./dist/control/CubicBezier.svelte.d.ts",
+			"svelte": "./dist/control/CubicBezier.svelte"
+		},
+		"./Element.svelte": {
+			"types": "./dist/extra/Element.svelte.d.ts",
+			"svelte": "./dist/extra/Element.svelte"
+		},
+		"./File.svelte": {
+			"types": "./dist/control/File.svelte.d.ts",
+			"svelte": "./dist/control/File.svelte"
+		},
+		"./Folder.svelte": {
+			"types": "./dist/core/Folder.svelte.d.ts",
+			"svelte": "./dist/core/Folder.svelte"
+		},
+		"./FpsGraph.svelte": {
+			"types": "./dist/monitor/FpsGraph.svelte.d.ts",
+			"svelte": "./dist/monitor/FpsGraph.svelte"
+		},
+		"./Image.svelte": {
+			"types": "./dist/control/Image.svelte.d.ts",
+			"svelte": "./dist/control/Image.svelte"
+		},
+		"./IntervalSlider.svelte": {
+			"types": "./dist/control/IntervalSlider.svelte.d.ts",
+			"svelte": "./dist/control/IntervalSlider.svelte"
+		},
+		"./List.svelte": {
+			"types": "./dist/control/List.svelte.d.ts",
+			"svelte": "./dist/control/List.svelte"
+		},
+		"./Monitor.svelte": {
+			"types": "./dist/monitor/Monitor.svelte.d.ts",
+			"svelte": "./dist/monitor/Monitor.svelte"
+		},
+		"./Pane.svelte": {
+			"types": "./dist/core/Pane.svelte.d.ts",
+			"svelte": "./dist/core/Pane.svelte"
+		},
+		"./Point.svelte": {
+			"types": "./dist/control/Point.svelte.d.ts",
+			"svelte": "./dist/control/Point.svelte"
+		},
+		"./Profiler.svelte": {
+			"types": "./dist/monitor/Profiler.svelte.d.ts",
+			"svelte": "./dist/monitor/Profiler.svelte"
+		},
+		"./RadioGrid.svelte": {
+			"types": "./dist/control/RadioGrid.svelte.d.ts",
+			"svelte": "./dist/control/RadioGrid.svelte"
+		},
+		"./Ring.svelte": {
+			"types": "./dist/control/Ring.svelte.d.ts",
+			"svelte": "./dist/control/Ring.svelte"
+		},
+		"./RotationEuler.svelte": {
+			"types": "./dist/control/RotationEuler.svelte.d.ts",
+			"svelte": "./dist/control/RotationEuler.svelte"
+		},
+		"./RotationQuaternion.svelte": {
+			"types": "./dist/control/RotationQuaternion.svelte.d.ts",
+			"svelte": "./dist/control/RotationQuaternion.svelte"
+		},
+		"./Separator.svelte": {
+			"types": "./dist/core/Separator.svelte.d.ts",
+			"svelte": "./dist/core/Separator.svelte"
+		},
+		"./Slider.svelte": {
+			"types": "./dist/control/Slider.svelte.d.ts",
+			"svelte": "./dist/control/Slider.svelte"
+		},
+		"./Stepper.svelte": {
+			"types": "./dist/control/Stepper.svelte.d.ts",
+			"svelte": "./dist/control/Stepper.svelte"
+		},
+		"./TabGroup.svelte": {
+			"types": "./dist/core/TabGroup.svelte.d.ts",
+			"svelte": "./dist/core/TabGroup.svelte"
+		},
+		"./TabPage.svelte": {
+			"types": "./dist/core/TabPage.svelte.d.ts",
+			"svelte": "./dist/core/TabPage.svelte"
+		},
+		"./Text.svelte": {
+			"types": "./dist/control/Text.svelte.d.ts",
+			"svelte": "./dist/control/Text.svelte"
+		},
+		"./Textarea.svelte": {
+			"types": "./dist/control/Textarea.svelte.d.ts",
+			"svelte": "./dist/control/Textarea.svelte"
+		},
+		"./ThemeUtils.js": {
+			"types": "./dist/theme.d.ts",
+			"default": "./dist/theme.js"
+		},
+		"./Utils.js": {
+			"types": "./dist/utils.d.ts",
+			"default": "./dist/utils.js"
+		},
+		"./WaveformMonitor.svelte": {
+			"types": "./dist/monitor/WaveformMonitor.svelte.d.ts",
+			"svelte": "./dist/monitor/WaveformMonitor.svelte"
+		},
+		"./Wheel.svelte": {
+			"types": "./dist/control/Wheel.svelte.d.ts",
+			"svelte": "./dist/control/Wheel.svelte"
+		}
+	},
+	"types": "./dist/index.d.ts",
+	"files": [
+		"./dist"
+	],
+	"scripts": {
+		"build": "pnpm run --sequential /^build:/",
+		"build:01-sync": "pnpm run check && pnpm run docs-sync",
+		"build:02-exports": "tsx ./scripts/generate-exports.ts",
+		"build:03-add-source-links": "tsx ./scripts/add-source-links.ts",
+		"build:04-format": "pnpm run format",
+		"build:05-package": "svelte-package && publint",
+		"build:06-heal-dts-comments": "tsx ./scripts/heal-dts-comments.ts",
+		"build:07-strip-component-documentation": "tsx ./scripts/strip-component-documentation.ts",
+		"build:08-format-library": "prettier --ignore-path --plugin prettier-plugin-svelte --write ./dist",
+		"build:09-doc-data": "tsx ./scripts/generate-documentation-data.ts",
+		"build:10-examples-to-kit": "tsx ./scripts/generate-kit-examples.ts",
+		"build:11-examples-to-docs": "tsx ./scripts/generate-example-components.ts",
+		"build:12-acknowledgments-data": "mkdir -p ./docs/src/content/acknowledgments && pnpm licenses list --json > ./docs/src/content/acknowledgments/acknowledgments-lib.json",
+		"build:13-build-docs": "pnpm run docs-build",
+		"build:14-build-kit": "pnpm run kit-build",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.build.json",
+		"check-watch": "svelte-kit sync && svelte-check --ignore ./scratch --tsconfig ./tsconfig.build.json --watch",
+		"clean": "rm pnpm-lock.yaml ; git clean -fdX",
+		"docs-build": "pnpm -C ./docs run build",
+		"docs-dev": "pnpm -C ./docs run dev",
+		"docs-preview": "pnpm -C ./docs run preview",
+		"docs-sync": "pnpm -C ./docs run sync",
+		"fix": "ksc fix",
+		"format": "ksc-mdat fix ; ksc-eslint fix ; ksc-prettier fix ; tsx ./scripts/format-embedded-code.ts",
+		"kit-build": "pnpm run kit-examples && vite build",
+		"kit-dev": " pnpm run kit-examples && vite dev",
+		"kit-examples": "tsx ./scripts/generate-kit-examples.ts",
+		"kit-preview": "vite preview",
+		"lint": "ksc lint && svelte-check --tsconfig ./tsconfig.build.json",
+		"release": "pnpm run build && bumpp --commit 'Release: %s' && NPM_AUTH_TOKEN=$(op read 'op://Personal/npm/token') && pnpm publish --ignore-scripts",
+		"rewrap": "rewrap -i --column 100 `find src \\( -name '*.svelte' -o -name '*.ts'  -o -name '*.html' \\) -type f | grep -v src/examples`",
+		"test": "pnpm run --sequential /^test:/",
+		"test:integration": "playwright test",
+		"type-check": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@kitschpatrol/tweakpane-plugin-camerakit": "0.3.1-beta.3",
+		"@kitschpatrol/tweakpane-plugin-essentials": "0.2.2-beta.3",
+		"@kitschpatrol/tweakpane-plugin-file-import": "1.1.2-beta.2",
+		"@kitschpatrol/tweakpane-plugin-image": "2.0.1-beta.8",
+		"@kitschpatrol/tweakpane-plugin-inputs": "1.0.4-beta.5",
+		"@kitschpatrol/tweakpane-plugin-profiler": "0.4.2-beta.3",
+		"@kitschpatrol/tweakpane-plugin-rotation": "0.2.1-beta.2",
+		"@kitschpatrol/tweakpane-plugin-textarea": "2.0.1-beta.2",
+		"@kitschpatrol/tweakpane-plugin-waveform": "1.0.4-beta.3",
+		"@tweakpane/core": "2.0.5",
+		"esm-env": "^1.2.2",
+		"fast-copy": "^4.0.2",
+		"fast-equals": "^6.0.0",
+		"nanoid": "^5.1.6",
+		"svelte-persisted-store": "0.12.0",
+		"tweakpane": "4.0.5"
+	},
+	"devDependencies": {
+		"@kitschpatrol/shared-config": "^6.0.2",
+		"@phenomnomnominal/tsquery": "^6.1.4",
+		"@playwright/test": "^1.58.2",
+		"@stkb/rewrap": "^0.1.0",
+		"@sveltejs/adapter-static": "^3.0.10",
+		"@sveltejs/kit": "^2.53.4",
+		"@sveltejs/package": "^2.5.7",
+		"@sveltejs/vite-plugin-svelte": "^3.1.2",
+		"@types/eslint": "^9.6.1",
+		"@types/node": "^20.19.35",
+		"bumpp": "^10.4.1",
+		"glob": "^13.0.6",
+		"node-addon-api": "^8.6.0",
+		"node-gyp": "^12.2.0",
+		"postcss-html": "^1.8.1",
+		"publint": "^0.3.18",
+		"read-package-up": "^12.0.0",
+		"svelte": "^4.2.20",
+		"svelte-check": "^4.4.4",
+		"svelte-language-server": "^0.17.29",
+		"svelte2tsx": "^0.7.51",
+		"ts-morph": "^27.0.2",
+		"tslib": "^2.8.1",
+		"tsx": "^4.21.0",
+		"typescript": "~5.9.3",
+		"vite": "^5.4.21",
+		"yaml": "^2.8.2"
+	},
+	"peerDependencies": {
+		"svelte": "^4.0.0 || ^5.0.0"
+	},
+	"packageManager": "pnpm@10.30.3",
+	"devEngines": {
+		"runtime": {
+			"name": "node",
+			"version": ">=20.19.0"
+		}
+	}
 }
