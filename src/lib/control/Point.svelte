@@ -116,27 +116,16 @@
 	> &
 		PropsForType<T> & {
 			/**
-			 * A 2D, 3D, or 4D point object to control.
+			 * Optional tooltip/description text for each axis input.
 			 *
-			 * Takes a tuple with a `number` value for each dimension, or an object with at least `x`
-			 * and `y` values, and optionally `z` and `w` values for additional dimensions.
+			 * Keys should match the axes present in the current point value:
+			 * `x` and `y` for 2D points, plus `z` for 3D points, and `w` for 4D points.
 			 *
-			 * The type of this value will determine the availability of axis-specific option props.
-			 * @bindable
+			 * This is used only by the Svelte wrapper to attach hover tooltips to the rendered
+			 * axis inputs. It is not part of the underlying Tweakpane point input API.
+			 * @default `undefined`
 			 */
-			value: T
-			/**
-			 * The minimum value for all dimensions.
-			 * @default `undefined`  \
-			 * No minimum.
-			 */
-			min?: number
-			/**
-			 * The maximum value for all dimensions.
-			 * @default `undefined`  \
-			 * No maximum.
-			 */
-			max?: number
+			axisDescription?: Partial<Record<'w' | 'x' | 'y' | 'z', string>>
 			/**
 			 * A function to customize the point value's string representation (e.g. rounding, etc.).
 			 * @default `undefined`  \
@@ -150,6 +139,18 @@
 			 */
 			keyScale?: number
 			/**
+			 * The maximum value for all dimensions.
+			 * @default `undefined`  \
+			 * No maximum.
+			 */
+			max?: number
+			/**
+			 * The minimum value for all dimensions.
+			 * @default `undefined`  \
+			 * No minimum.
+			 */
+			min?: number
+			/**
 			 * The unit scale for pointer-based input for all dimensions.
 			 * @default `undefined`  \
 			 * [Dynamic based on magnitude of
@@ -162,6 +163,16 @@
 			 * No step constraint.
 			 */
 			step?: number
+			/**
+			 * A 2D, 3D, or 4D point object to control.
+			 *
+			 * Takes a tuple with a `number` value for each dimension, or an object with at least `x`
+			 * and `y` values, and optionally `z` and `w` values for additional dimensions.
+			 *
+			 * The type of this value will determine the availability of axis-specific option props.
+			 * @bindable
+			 */
+			value: T
 		}
 
 	// Bindable props must be re-exported
