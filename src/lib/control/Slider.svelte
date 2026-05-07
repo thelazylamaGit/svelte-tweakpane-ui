@@ -58,7 +58,11 @@ A slider component providing fine-grained control over numeric values.
 
 Wraps Tweakpane's [number bindings](https://tweakpane.github.io/docs/input-bindings/#number).
 
-Note that if `min` and `max` props are not defined, no linear slider widget will be provided and a
+Specifying `min`/`max` adds hard value limits. Specifying `softMin`/`softMax` adds a preferred
+visual slider range that still allows typed values outside the soft range; the slider expands
+visually until the value returns inside the soft range.
+
+If neither hard nor soft range props are defined, no linear slider widget will be provided and an
 input field with a draggable handle will be used instead.
 
 See the `<Interval>` component for a multi-handle range-defining slider.
@@ -77,8 +81,8 @@ Usage outside of a `<Pane>` component will implicitly wrap the slider in `<Pane 
 
 <Slider
   bind:value
-  min={-1}
-  max={1}
+  softMin={-1}
+  softMax={1}
   format={(v) => v.toFixed(2)}
   label="Let it Slide"
 />

@@ -69,5 +69,6 @@
 	"cSpell.workspaceRootPath": ".",
 	"[ruby]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
-	}
+	},
+	"files.exclude": {}
 }

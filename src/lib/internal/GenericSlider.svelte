@@ -36,6 +36,20 @@
 		 */
 		min?: number
 		/**
+		 * Maximum value of the visual slider range.
+		 *
+		 * Values entered above this expand the slider until they return inside the soft range.
+		 * @default `undefined`
+		 */
+		softMax?: number
+		/**
+		 * Minimum value of the visual slider range.
+		 *
+		 * Values entered below this expand the slider until they return inside the soft range.
+		 * @default `undefined`
+		 */
+		softMin?: number
+		/**
 		 * The unit scale for pointer-based input for all dimensions.
 		 * @default `undefined`  \
 		 * [Dynamic based on magnitude of
@@ -61,6 +75,8 @@
 	export let options: $$Props['options'] = undefined
 	export let min: $$Props['min'] = undefined
 	export let max: $$Props['max'] = undefined
+	export let softMin: $$Props['softMin'] = undefined
+	export let softMax: $$Props['softMax'] = undefined
 	export let step: $$Props['step'] = undefined
 	export let pointerScale: $$Props['pointerScale'] = undefined
 	export let keyScale: $$Props['keyScale'] = undefined
@@ -119,6 +135,8 @@
 	$: optionsInternal = {
 		min,
 		max,
+		softMin,
+		softMax,
 		format: formatProxy,
 		keyScale,
 		pointerScale,
