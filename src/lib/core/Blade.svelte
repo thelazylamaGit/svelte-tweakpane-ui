@@ -34,6 +34,12 @@
 	export let disabled: boolean = false
 
 	/**
+	 * Native tooltip text for the blade.
+	 * @default `undefined`
+	 */
+	export let description: string | undefined = undefined
+
+	/**
 	 * Custom color scheme.
 	 * @default `undefined`  \
 	 * Inherits default Tweakpane theme equivalent to `ThemeUtils.presets.standard`, or the theme
@@ -85,6 +91,7 @@
 
 		// Last one wins
 		_ref = $parentStore.addBlade({
+			description,
 			index,
 			...options,
 			disabled, // Why last?
@@ -105,6 +112,7 @@
 	$: DEV && enforceReadonly(_ref, ref, 'Blade', 'ref', true)
 
 	$: options && $parentStore && index !== undefined && create()
+	$: _ref && (_ref.description = description)
 	$: _ref && (_ref.disabled = disabled)
 	$: theme &&
 		$parentStore &&
@@ -158,6 +166,6 @@ need for the options param.
 	{/if}
 {:else}
 	<InternalPaneInline {theme} userCreatedPane={false}>
-		<svelte:self bind:disabled bind:options bind:plugin bind:ref />
+		<svelte:self bind:description bind:disabled bind:options bind:plugin bind:ref />
 	</InternalPaneInline>
 {/if}

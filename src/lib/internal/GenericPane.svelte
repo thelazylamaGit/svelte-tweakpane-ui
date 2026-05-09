@@ -18,6 +18,12 @@
 	export let title: string | undefined = undefined
 
 	/**
+	 * Native tooltip text for the pane.
+	 * @default `undefined`
+	 */
+	export let description: string | undefined = undefined
+
+	/**
 	 * Allow users to interactively expand / contract the pane by clicking its title bar.
 	 *
 	 * Hides the collapse button from the title bar when `false`.
@@ -187,6 +193,7 @@
 	}
 
 	$: tpPane?.element?.classList.add('svelte-tweakpane-ui')
+	$: tpPane && (tpPane.description = description)
 	$: tpPane && setScale(scale)
 	$: tpPane && updateCollapsibility(userExpandable, tpPane.element, 'tp-rotv_b', 'tp-rotv_m')
 	$: tpPane && title !== undefined && (tpPane.title = title.length > 0 ? title : ' ')

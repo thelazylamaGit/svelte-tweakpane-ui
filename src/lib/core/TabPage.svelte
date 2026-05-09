@@ -23,6 +23,12 @@
 	export let disabled: boolean = false
 
 	/**
+	 * Native tooltip text for the tab page.
+	 * @default `undefined`
+	 */
+	export let description: string | undefined = undefined
+
+	/**
 	 * Sets the page is the active tab.
 	 *
 	 * When bound it will indicate whether the tab is active.
@@ -51,6 +57,8 @@
 	const tabIndexStore: Writable<number> = getContext('tabIndexStore')
 	const userCreatedPane = getContext('userCreatedPane')
 	const initialSelectedIndex: number = getContext('initialSelectedIndex')
+	const getTabGroupDescription: (() => string | undefined) | undefined =
+		getContext('tabGroupDescription')
 
 	// Save parent context for ourselves
 	const parentStore: Writable<Container> = getContext('parentStore')
@@ -73,12 +81,14 @@
 			$tabGroupStore = $parentStore.addTab({
 				// Tabs MUST be created with at least one page how to handle tabs with no children?
 				disabled: false,
+				description: getTabGroupDescription?.(),
 				index: $tabIndexStore,
 				// Could be cleaner to have children create the tab as needed?
-				pages: [{ title }],
+				pages: [{ description, title }],
 			})
 
 			$tabPageStore = $tabGroupStore.pages[0]
+			$tabPageStore.description = description
 
 			// Only set selected if this is the initially selected tab
 			// Don't explicitly deselect - let Tweakpane manage auto-selection
@@ -87,7 +97,7 @@
 			}
 		} else if (!$tabPageStore && $tabGroupStore) {
 			// Add to existing tab
-			$tabPageStore = $tabGroupStore.addPage({ index, title })
+			$tabPageStore = $tabGroupStore.addPage({ description, index, title })
 
 			// Only set selected if this is the initially selected tab
 			if (index === initialSelectedIndex) {
@@ -105,6 +115,7 @@
 	})
 
 	$: index !== undefined && $parentStore && $tabIndexStore !== undefined && create()
+	$: $tabPageStore && ($tabPageStore.description = description)
 	$: $tabPageStore && ($tabPageStore.title = title)
 	$: $tabPageStore && ($tabPageStore.disabled = disabled)
 	$: $tabPageStore && ($tabPageStore.selected = selected)
@@ -174,7 +185,7 @@ Count B: {countB}
 {:else}
 	<InternalPaneInline {theme} userCreatedPane={false}>
 		<TabGroup>
-			<svelte:self {disabled} {selected} {theme} {title}>
+			<svelte:self {description} {disabled} {selected} {theme} {title}>
 				<slot />
 			</svelte:self>
 		</TabGroup>

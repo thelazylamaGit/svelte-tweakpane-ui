@@ -24,6 +24,12 @@
 	export let disabled: boolean = false
 
 	/**
+	 * Native tooltip text for the folder.
+	 * @default `undefined`
+	 */
+	export let description: string | undefined = undefined
+
+	/**
 	 * Expand or collapse folder.
 	 *
 	 * When bound it will indicate whether the folder is expanded or collapsed.
@@ -66,6 +72,7 @@
 
 	function create() {
 		$folderStore = $parentStore.addFolder({
+			description,
 			disabled,
 			expanded,
 			index,
@@ -89,6 +96,7 @@
 
 	$: $parentStore && !folderRef && index !== undefined && create()
 	$: folderRef && updateCollapsibility(userExpandable, folderRef.element, 'tp-fldv_b', 'tp-fldv_m')
+	$: folderRef && (folderRef.description = description)
 	$: folderRef && (folderRef.title = title)
 	$: folderRef && (folderRef.disabled = disabled)
 	$: folderRef && expanded !== undefined && (folderRef.expanded = expanded) // Doing this on $folderStore causes issues
@@ -146,7 +154,7 @@ Usage outside of a `<Pane>` component will implicitly wrap the folder in `<Pane 
 	{/if}
 {:else}
 	<InternalPaneInline {theme} userCreatedPane={false}>
-		<svelte:self bind:expanded {disabled} {title} {userExpandable}>
+		<svelte:self bind:expanded {description} {disabled} {title} {userExpandable}>
 			<slot />
 		</svelte:self>
 	</InternalPaneInline>

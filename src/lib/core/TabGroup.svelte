@@ -15,6 +15,12 @@
 	export let disabled: boolean = false
 
 	/**
+	 * Native tooltip text for the tab group.
+	 * @default `undefined`
+	 */
+	export let description: string | undefined = undefined
+
+	/**
 	 * Active page index.
 	 *
 	 * Note that SSR will always render the first page height, regardless of the initial active
@@ -43,6 +49,7 @@
 
 	const tabGroupStore = writable<TabGroupRef>()
 	setContext('tabGroupStore', tabGroupStore)
+	setContext('tabGroupDescription', () => description)
 
 	const tabIndexStore = writable<number>()
 	setContext('tabIndexStore', tabIndexStore)
@@ -100,6 +107,7 @@
 	$: setUpListeners($tabGroupStore)
 	// Also re-run when $tabGroupStore changes (when pages are added)
 	$: $tabGroupStore && setSelectedIndex(selectedIndex)
+	$: $tabGroupStore && ($tabGroupStore.description = description)
 	$: $tabGroupStore && ($tabGroupStore.disabled = disabled)
 	$: theme &&
 		$parentStore &&
@@ -154,7 +162,7 @@ Usage outside of a `<Pane>` component will implicitly wrap the tab in `<Pane pos
 	{/if}
 {:else}
 	<InternalPaneInline {theme} userCreatedPane={false}>
-		<svelte:self bind:selectedIndex {disabled}>
+		<svelte:self bind:selectedIndex {description} {disabled}>
 			<slot />
 		</svelte:self>
 	</InternalPaneInline>

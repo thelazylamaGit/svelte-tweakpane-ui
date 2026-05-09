@@ -45,6 +45,12 @@
 	export let disabled: boolean = false
 
 	/**
+	 * Native tooltip text for the control.
+	 * @default `undefined`
+	 */
+	export let description: string | undefined = undefined
+
+	/**
 	 * Text displayed next to control.
 	 * @default `undefined`
 	 */
@@ -117,6 +123,7 @@
 
 		// Last one wins
 		_ref = $parentStore.addBinding(object, key, {
+			description,
 			index,
 			label,
 			...options,
@@ -232,6 +239,7 @@
 	// Options seem immutable...
 	// have to recreate old version supporting key changes $: key, options,
 	$: (options, $parentStore !== undefined && index !== undefined && create())
+	$: _ref !== undefined && (_ref.description = description)
 	$: _ref !== undefined && (_ref.disabled = disabled)
 	$: _ref !== undefined && (_ref.label = label)
 
@@ -289,6 +297,7 @@ position="inline">`.
 	<InternalPaneInline {theme} userCreatedPane={false}>
 		<svelte:self
 			bind:disabled
+			bind:description
 			bind:key
 			bind:label
 			bind:object

@@ -37,6 +37,12 @@
 	export let disabled: boolean = false
 
 	/**
+	 * Native tooltip text for the button.
+	 * @default `undefined`
+	 */
+	export let description: string | undefined = undefined
+
+	/**
 	 * Custom color scheme.
 	 * @default `undefined`  \
 	 * Inherits default Tweakpane theme equivalent to
@@ -68,6 +74,7 @@
 		if (button) button.dispose()
 
 		button = $parentStore?.addButton({
+			description,
 			disabled,
 			index,
 			label,
@@ -90,6 +97,7 @@
 	})
 
 	$: index !== undefined && $parentStore && !button && create()
+	$: button && (button.description = description)
 	$: button && (button.title = title)
 	$: button && (button.label = label)
 	$: button && (button.disabled = disabled)
@@ -138,6 +146,6 @@ buttons.
 	{/if}
 {:else}
 	<InternalPaneInline {theme} userCreatedPane={false}>
-		<svelte:self on:click {disabled} {label} {title} />
+		<svelte:self on:click {description} {disabled} {label} {title} />
 	</InternalPaneInline>
 {/if}

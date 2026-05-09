@@ -3,7 +3,7 @@
 
 	// Extends tweakpane to take arbitrary arrays of values
 	export type ListOptionsArray<T> = T[]
-	export type ListOptionsObjectArray<T> = Array<{ value: T; text: string }>
+	export type ListOptionsObjectArray<T> = Array<{ description?: string; value: T; text: string }>
 	export type ListOptionsRecord<T> = Record<string, T>
 
 	export type ListOptions<T> = Simplify<
