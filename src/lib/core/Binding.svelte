@@ -192,6 +192,7 @@
 	let lastObject: T = object
 	let lastValue: T[keyof T] = safeCopy(object[key])
 	let internalChange = false
+	let internalChangeLast: boolean | undefined
 	function onBoundValueChange(object: T) {
 		// Check svelte implementation?
 		// TODO primitive checks for optimization?
@@ -207,6 +208,7 @@
 
 			dispatch('change', {
 				value: safeCopy(object[key]),
+				last: internalChangeLast,
 				origin: internalChange ? 'internal' : 'external',
 			})
 
@@ -220,6 +222,7 @@
 		}
 
 		internalChange = false
+		internalChangeLast = undefined
 
 		// Check for the bound object changing entirely...
 		if (lastObject !== object) {
@@ -228,8 +231,9 @@
 		}
 	}
 
-	function onTweakpaneChange() {
+	function onTweakpaneChange(event: { last?: boolean }) {
 		internalChange = true
+		internalChangeLast = event.last
 		object[key] = safeCopy(object[key]) // Svelte 5...
 	}
 

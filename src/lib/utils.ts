@@ -42,6 +42,10 @@ export type ValueChangeEvent<V> = CustomEvent<{
 	 */
 	value: V
 	/**
+	 * Whether this is the final event in an interaction.
+	 */
+	last?: boolean
+	/**
 	 * The origin of the event.
 	 * Changes resulting from the user's direct manipulation of the control will are marked as `internal`.
 	 * Changes resulting from manipulation of the bound value from _outside_ the component are marked as `external`.
