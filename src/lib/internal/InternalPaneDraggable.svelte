@@ -637,10 +637,6 @@
 		event.preventDefault()
 	}
 
-	const bringToFront = () => {
-		zIndexLocal = ++zIndexGlobal
-	}
-
 	onMount(() => {
 		setDocumentSize()
 
@@ -653,7 +649,6 @@
 
 		// Prevent scrolling content behind the pane on mobile when dragging the pane or otherwise
 		containerElement.addEventListener('touchmove', touchScrollBlocker, { passive: false })
-		containerElement.addEventListener('pointerdown', bringToFront, { capture: true })
 
 		// Make the pane draggable the Tweakpane pane is NOT itself a svelte component, so we have
 		// to manage events directly through the DOM... click blocking and handling collapse in
@@ -695,7 +690,6 @@
 		widthHandleElement?.removeEventListener('dblclick', doubleClickListener)
 
 		containerElement?.removeEventListener('touchmove', touchScrollBlocker)
-		containerElement?.removeEventListener('pointerdown', bringToFront, { capture: true })
 
 		// Clean up store id check, e.g. when cycling through the position mode of a single pane
 		if (localStoreId !== undefined) {
@@ -807,11 +801,17 @@ This component is for internal use only.
 
 <svelte:window on:resize={setDocumentSize} />
 
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
 	bind:clientHeight={containerHeight}
 	bind:clientWidth={containerWidth}
 	bind:this={containerElement}
-	on:focus|capture={bringToFront}
+	on:focus|capture={() => {
+		zIndexLocal = ++zIndexGlobal
+	}}
+	on:pointerdown|capture={() => {
+		zIndexLocal = ++zIndexGlobal
+	}}
 	class="draggable-container"
 	class:not-collapsable={!userExpandable}
 	class:not-resizable={!resizable}
